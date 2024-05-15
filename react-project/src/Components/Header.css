@@ -1,0 +1,48 @@
+:root {
+    --dark-gray: #333333;
+    --white: #FFFFFF;
+    --light-gray: #CCCCCC;
+    --bright-blue: #0077FF;
+}
+
+.hover-effect {
+    transition: color 0.3s;
+}
+
+.hover-effect:hover {
+    color: var(--bright-blue);
+}
+
+.nav-link {
+    color: #FFFFFF;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#blinking-cursor {
+    color: var(--bright-blue);
+    animation: blink 1s steps(1) infinite;
+}
+
+.nav-link {
+    box-shadow: inset 0 0 0 0 var(--bright-blue);
+    transition: box-shadow .3s ease-in-out;
+  }
+
+  .nav-link:hover {
+    box-shadow: inset 0 -3px 0px 0px var(--bright-blue);
+    color: #fff;
+  }
+

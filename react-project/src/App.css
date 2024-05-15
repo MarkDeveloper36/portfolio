@@ -1,10 +1,3 @@
-:root {
-  --dark-gray: #333333;
-  --white: #FFFFFF;
-  --light-gray: #CCCCCC;
-  --bright-blue: #0077FF;
-}
-
 #root {
   width: 100%;
   text-align: center;
