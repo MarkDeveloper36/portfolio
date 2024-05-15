@@ -6,7 +6,7 @@ import LogoIcon from './LogoIcon.jsx'
 
 export default function Header() {
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-sm navbar-dark">
             <div className="container-fluid mx-4">
                 <a className="navbar-brand d-flex" href="#">
                     <LogoIcon></LogoIcon>

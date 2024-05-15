@@ -1,8 +1,14 @@
 :root {
     --dark-gray: #333333;
-    --white: #FFFFFF;
+    --white: #ffffff;
     --light-gray: #CCCCCC;
-    --bright-blue: #0077FF;
+    --bright-blue: #0077ff;
+    --virdian: #498467;
+    --duke-blue: #0d00a4;
+}
+
+nav {
+    background-color: var(--dark-gray);
 }
 
 .hover-effect {
