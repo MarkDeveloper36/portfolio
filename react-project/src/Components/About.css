@@ -1,0 +1,24 @@
+section {
+    color: #fff;
+    background-image: linear-gradient(to bottom, #333333, #1a1a1a);
+}
+
+#greeting {
+    color: #0077ff;
+}
+
+.text-white {
+    color: #fff;
+}
+
+#projects-btn {
+    border:2px solid #0077ff;
+    background-color: #1a1a1a;
+    font-weight: 300;
+    transition: all cubic-bezier(.4,0,.2,1) .15s;
+}
+
+#projects-btn:hover {
+    transform: translate(6px, 3px);
+    box-shadow: -3px -2px 0px 0px #0077ff;
+}
