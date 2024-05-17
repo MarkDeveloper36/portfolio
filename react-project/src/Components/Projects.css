@@ -1,4 +1,36 @@
 #projects-container {
     color: #fff;
-    background-image: linear-gradient(to bottom, #333333, #1a1a1a);
+    background-image: linear-gradient(to bottom, #333333, #0077ff);
+}
+
+.project-card {
+    width: 18rem;
+    color: #fff;
+    background-image: linear-gradient(to left top, #333, #1a1a1a);
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card {
+    transition: transform 0.2s;
+}
+
+.project-card:hover {
+    transform: scale(1.005);
+}
+
+.btn {
+    border:2px solid #0077ff;
+    background-color: #1a1a1a;
+    font-weight: 300;
+    transition: all cubic-bezier(.4,0,.2,1) .15s;
+}
+
+.btn:hover {
+    transform: translate(6px, 3px);
+    box-shadow: -3px -2px 0px 0px #0077ff;
 }

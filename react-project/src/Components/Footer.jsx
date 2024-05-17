@@ -16,8 +16,8 @@ export default function Footer() {
                         <p>&copy;</p>
                     </div>
                     <div className='col-5 d-flex flex-column align-items-center'>
-                        <p className='underline-hover footer-link'>Github</p>
-                        <p className='underline-hover footer-link'>LinkedIn</p>
+                        <p className='underline-hover footer-link'><a href='https://github.com/MarkDeveloper36' target="_blank" className='footer-link'>Github</a></p>
+                        <p className='underline-hover footer-link'><a href='https://www.linkedin.com/in/mark-kranenburg-317522152/' target="_blank" className='footer-link'>LinkedIn</a></p>
                     </div>
                     <div className='col-1'></div>
                 </div>
