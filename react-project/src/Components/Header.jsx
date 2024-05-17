@@ -19,13 +19,13 @@ export default function Header() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <a className="nav-link hover-effect" href="#">About</a>
+                            <a className="nav-link underline-hover" href="#">About</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link hover-effect" href="#">Projects</a>
+                            <a className="nav-link underline-hover" href="#">Projects</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link hover-effect" href="#">Contact</a>
+                            <a className="nav-link underline-hover" href="#">Contact</a>
                         </li>
                     </ul>
                 </div>
