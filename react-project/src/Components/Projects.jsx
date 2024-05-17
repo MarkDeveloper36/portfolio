@@ -1,9 +1,9 @@
-import 'Projects.css'
+import './Projects.css'
 
 export default function Projects() {
     return(
-        <div>
-            <div></div>
+        <div id='projects-container' className='py-5 m-0'>
+            
         </div>
     )
 }

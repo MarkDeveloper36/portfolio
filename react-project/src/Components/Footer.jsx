@@ -7,7 +7,7 @@ export default function Footer() {
                 <h2>WANT TO GET IN TOUCH?</h2>
                 <h3 className='underline-hover'>M.Kranenburg@qquest.nl</h3>
             </div>
-            <div className='container-fluid'>
+            <div className='container-fluid pb-2'>
                 <div className='row'>
                     <div className='col-1'></div>
                     <div className='col-5 d-flex flex-column align-items-center'>
