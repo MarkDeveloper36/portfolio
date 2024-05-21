@@ -1,5 +1,6 @@
 import './Projects.css'
 import Calculator from './../assets/Calculator.png'
+import { Link } from 'react-router-dom'
 
 export default function Projects() {
     return (
@@ -10,7 +11,7 @@ export default function Projects() {
                     <div className="card-body">
                         <h5 className="card-title">Card Title</h5>
                         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <Link to="/calculator" className="btn btn-primary">Calculator</Link>
                     </div>
                 </div>
             </div>
