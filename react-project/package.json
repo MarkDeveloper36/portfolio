@@ -1,5 +1,5 @@
 {
-  "homepage": "https://MarkDeveloper36.github.io/portfolio",
+  "homepage": "http://MarkDeveloper36.github.io/portfolio",
   "name": "react-project",
   "private": true,
   "version": "0.0.0",
@@ -13,7 +13,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -25,6 +24,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "gh-pages": "^6.1.1",
     "vite": "^5.2.0"
   }
 }
