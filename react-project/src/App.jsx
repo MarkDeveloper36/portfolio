@@ -10,7 +10,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Router>
+    <Router basename='/portfolio'>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home />} />
