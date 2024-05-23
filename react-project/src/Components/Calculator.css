@@ -1,4 +1,4 @@
-section {
+#sectionCalculator {
     font-size: 2rem;
     color: white;
     background-color: black;
@@ -78,7 +78,7 @@ section {
     color: #FF9500;
 }
 
-@media (max-width: 455px) {
+/* @media (max-width: 455px) {
     body {
         margin: 0;
         padding: 0;
@@ -131,4 +131,4 @@ section {
         height: 4rem;
         margin: 0.3rem;
     }
-}
+} */
