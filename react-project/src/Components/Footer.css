@@ -32,3 +32,7 @@ footer {
 h3 {
     max-width: 350px;
 }
+
+a:hover {
+    color: #fff;
+}
