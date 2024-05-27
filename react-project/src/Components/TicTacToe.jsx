@@ -5,8 +5,6 @@ export default function TicTacToe() {
         let elRow = e.target.getAttribute('data-row');
         let elColumn = e.target.getAttribute('data-column');
         gameController.playRound(elRow, elColumn);
-        gameBoard.DOMController.updateBox(e.target);
-        gameBoard.DOMController.renderBoard(gameBoard.board);
     }
 
     const gameBoard = (function () {
@@ -28,27 +26,9 @@ export default function TicTacToe() {
                     }
                 }
             },
-            updateBox: function(el) {
-                console.log(gameController.isPlayer1);
-            }
         }
 
-
-        // const printBoard = () => {
-        //     console.log('Board: ');
-
-        //     let printedBoard = '';
-        //     for (let i = 0; i < 3; i++) {
-        //         for (let j = 0; j < 3; j++) {
-        //             printedBoard += board[i][j] + ', ';
-        //         }
-        //         printedBoard += '\n';
-        //     }
-
-        //     console.log(printedBoard);
-        // }
-
-        return { printBoard, board, DOMController };
+        return { board, DOMController };
     })();
 
     function createPlayer(playerNum, symbol) {
@@ -59,18 +39,22 @@ export default function TicTacToe() {
     const player2 = createPlayer(2, 'O');
 
     const gameController = (function () {
-        let isPlayer1 = true;
+        let isPlayer1Turn = true;
         let isWinner = false;
 
         const playRound = (row, column) => {
-            gameBoard.printBoard();
+            let selectedBox = gameBoard.board[row][column];
 
-            isPlayer1 ? (
-                gameBoard.board[row][column] = 'X'
-            ) : (
-                gameBoard.board[row][column] = 'O'
-            );
-            if (!checkForWinner() && !checkForTie()) { isPlayer1 = !isPlayer1 }
+            if (selectedBox === '') {
+                isPlayer1Turn ? (gameBoard.board[row][column] = player1.symbol) : (gameBoard.board[row][column] = player2.symbol);
+
+                gameBoard.DOMController.renderBoard(gameBoard.board);
+                updateBoard();
+            }
+        }
+
+        const updateBoard = () => {
+            if (!checkForWinner() && !checkForTie()) { isPlayer1Turn = !isPlayer1Turn }
         }
 
         const checkForWinner = () => {
@@ -122,8 +106,8 @@ export default function TicTacToe() {
         }
 
         const announceWinner = () => {
-            gameBoard.printBoard();
-            isPlayer1 ?
+            // gameBoard.printBoard();
+            isPlayer1Turn ?
                 console.log('player 1 won (' + player1.symbol + ')')
                 :
                 console.log('player 2 won (' + player2.symbol + ')');
@@ -138,10 +122,10 @@ export default function TicTacToe() {
                 }
             }
             isWinner = false;
-            isPlayer1 = true;
+            isPlayer1Turn = true;
         }
 
-        return { playRound, isPlayer1};
+        return { playRound, isPlayer1Turn };
     })();
 
     return (
