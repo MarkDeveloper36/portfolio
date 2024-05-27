@@ -2,14 +2,18 @@ import './TicTacToe.css'
 // dit project was voornamelijk bedoelt om module design patern te leren
 export default function TicTacToe() {
     const handleClick = (e) => {
-        GameBoard.DOMController.renderBoard(GameBoard.board);
+        let elRow = e.target.getAttribute('data-row');
+        let elColumn = e.target.getAttribute('data-column');
+        gameController.playRound(elRow, elColumn);
+        gameBoard.DOMController.updateBox(e.target);
+        gameBoard.DOMController.renderBoard(gameBoard.board);
     }
 
-    const GameBoard = (function () {
+    const gameBoard = (function () {
         const board = [
-            ['O', '_', 'O'],
-            ['_', 'X', '_'],
-            ['_', 'X', '_']
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
         ];
 
         const DOMController = {
@@ -23,23 +27,26 @@ export default function TicTacToe() {
                         index++;
                     }
                 }
+            },
+            updateBox: function(el) {
+                console.log(gameController.isPlayer1);
             }
         }
 
 
-        const printBoard = () => {
-            console.log('Board: ');
+        // const printBoard = () => {
+        //     console.log('Board: ');
 
-            let printedBoard = '';
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    printedBoard += board[i][j] + ', ';
-                }
-                printedBoard += '\n';
-            }
+        //     let printedBoard = '';
+        //     for (let i = 0; i < 3; i++) {
+        //         for (let j = 0; j < 3; j++) {
+        //             printedBoard += board[i][j] + ', ';
+        //         }
+        //         printedBoard += '\n';
+        //     }
 
-            console.log(printedBoard);
-        }
+        //     console.log(printedBoard);
+        // }
 
         return { printBoard, board, DOMController };
     })();
@@ -55,19 +62,12 @@ export default function TicTacToe() {
         let isPlayer1 = true;
         let isWinner = false;
 
-        const playRound = () => {
-            let row;
-            let column;
-
+        const playRound = (row, column) => {
             gameBoard.printBoard();
 
             isPlayer1 ? (
-                row = prompt('player 1 row: '),
-                column = prompt('player 1 column'),
                 gameBoard.board[row][column] = 'X'
             ) : (
-                row = prompt('player 2 row: '),
-                column = prompt('player 2 column'),
                 gameBoard.board[row][column] = 'O'
             );
             if (!checkForWinner() && !checkForTie()) { isPlayer1 = !isPlayer1 }
@@ -75,28 +75,28 @@ export default function TicTacToe() {
 
         const checkForWinner = () => {
             let thisRoundHasWinner = false;
-            if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[0][1] && gameBoard.board[0][0] === gameBoard.board[0][2]) {
+            if (gameBoard.board[0][0] !== '' && gameBoard.board[0][0] === gameBoard.board[0][1] && gameBoard.board[0][0] === gameBoard.board[0][2]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[1][0] !== '_' && gameBoard.board[1][0] === gameBoard.board[1][1] && gameBoard.board[1][0] === gameBoard.board[1][2]) {
+            } else if (gameBoard.board[1][0] !== '' && gameBoard.board[1][0] === gameBoard.board[1][1] && gameBoard.board[1][0] === gameBoard.board[1][2]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[2][0] !== '_' && gameBoard.board[2][0] === gameBoard.board[2][1] && gameBoard.board[2][0] === gameBoard.board[2][2]) {
+            } else if (gameBoard.board[2][0] !== '' && gameBoard.board[2][0] === gameBoard.board[2][1] && gameBoard.board[2][0] === gameBoard.board[2][2]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[1][0] && gameBoard.board[0][0] === gameBoard.board[2][0]) {
+            } else if (gameBoard.board[0][0] !== '' && gameBoard.board[0][0] === gameBoard.board[1][0] && gameBoard.board[0][0] === gameBoard.board[2][0]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[0][1] !== '_' && gameBoard.board[0][1] === gameBoard.board[1][1] && gameBoard.board[0][1] === gameBoard.board[2][1]) {
+            } else if (gameBoard.board[0][1] !== '' && gameBoard.board[0][1] === gameBoard.board[1][1] && gameBoard.board[0][1] === gameBoard.board[2][1]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[0][2] !== '_' && gameBoard.board[0][2] === gameBoard.board[1][2] && gameBoard.board[0][2] === gameBoard.board[2][2]) {
+            } else if (gameBoard.board[0][2] !== '' && gameBoard.board[0][2] === gameBoard.board[1][2] && gameBoard.board[0][2] === gameBoard.board[2][2]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[1][1] && gameBoard.board[0][0] === gameBoard.board[2][2]) {
+            } else if (gameBoard.board[0][0] !== '' && gameBoard.board[0][0] === gameBoard.board[1][1] && gameBoard.board[0][0] === gameBoard.board[2][2]) {
                 announceWinner();
                 thisRoundHasWinner = true;
-            } else if (gameBoard.board[0][2] !== '_' && gameBoard.board[0][2] === gameBoard.board[1][1] && gameBoard.board[0][2] === gameBoard.board[2][0]) {
+            } else if (gameBoard.board[0][2] !== '' && gameBoard.board[0][2] === gameBoard.board[1][1] && gameBoard.board[0][2] === gameBoard.board[2][0]) {
                 announceWinner();
                 thisRoundHasWinner = true;
             }
@@ -108,7 +108,7 @@ export default function TicTacToe() {
             let isBoardFilled = true;
             gameBoard.board.forEach(row => {
                 row.forEach(box => {
-                    if (box === '_') {
+                    if (box === '') {
                         isBoardFilled = false;
                     }
                 })
@@ -134,14 +134,14 @@ export default function TicTacToe() {
         const startNewGame = () => {
             for (let rowIndex = 0; rowIndex < gameBoard.board.length; rowIndex++) {
                 for (let boxIndex = 0; boxIndex < gameBoard.board[rowIndex].length; boxIndex++) {
-                    gameBoard.board[rowIndex][boxIndex] = '_';
+                    gameBoard.board[rowIndex][boxIndex] = '';
                 }
             }
             isWinner = false;
             isPlayer1 = true;
         }
 
-        return { playRound };
+        return { playRound, isPlayer1};
     })();
 
     return (
@@ -149,19 +149,19 @@ export default function TicTacToe() {
             <h1 onClick={gameController.playRound}>Tic Tac Toe</h1>
             <div id='ticTacToeContainer' className='container'>
                 <div className='row'>
-                    <div id='tictactoeBox1' className='box bg-secondary border border-primary' onClick={handleClick}></div>
-                    <div id='tictactoeBox2' className='box bg-secondary border border-primary' onClick={handleClick}></div>
-                    <div id='tictactoeBox3' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox1' data-row="0" data-column="0" className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox2' data-row="0" data-column="1" className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox3' data-row="0" data-column="2" className='box bg-secondary border border-primary' onClick={handleClick}></div>
                 </div>
                 <div className='row'>
-                    <div id='tictactoeBox4' className='box bg-secondary border border-primary'></div>
-                    <div id='tictactoeBox5' className='box bg-secondary border border-primary'></div>
-                    <div id='tictactoeBox6' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox4' data-row="1" data-column="0" className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox5' data-row="1" data-column="1" className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox6' data-row="1" data-column="2" className='box bg-secondary border border-primary' onClick={handleClick}></div>
                 </div>
                 <div className='row'>
-                    <div id='tictactoeBox7' className='box bg-secondary border border-primary'></div>
-                    <div id='tictactoeBox8' className='box bg-secondary border border-primary'></div>
-                    <div id='tictactoeBox9' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox7' data-row="2" data-column="0" className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox8' data-row="2" data-column="1" className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox9' data-row="2" data-column="2" className='box bg-secondary border border-primary' onClick={handleClick}></div>
                 </div>
             </div>
         </section>
