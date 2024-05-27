@@ -51,8 +51,29 @@ export default function TicTacToe() {
                 column = prompt('player 2 column'),
                 gameBoard.board[row][column] = 'O'
             );
-            isPlayer1 = !isPlayer1;
             gameBoard.printBoard();
+            checkForWinner();
+            isPlayer1 = !isPlayer1;
+        }
+
+        const checkForWinner = () => {
+            if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[0][1] && gameBoard.board[0][0] === gameBoard.board[0][2]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[1][0] !== '_' && gameBoard.board[1][0] === gameBoard.board[1][1] && gameBoard.board[1][0] === gameBoard.board[1][2]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[2][0] !== '_' && gameBoard.board[2][0] === gameBoard.board[2][1] && gameBoard.board[2][0] === gameBoard.board[2][2]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[1][0] && gameBoard.board[0][0] === gameBoard.board[2][0]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[0][1] !== '_' && gameBoard.board[0][1] === gameBoard.board[1][1] && gameBoard.board[0][1] === gameBoard.board[2][1]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[0][2] !== '_' && gameBoard.board[0][2] === gameBoard.board[1][2] && gameBoard.board[0][2] === gameBoard.board[2][2]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[1][1] && gameBoard.board[0][0] === gameBoard.board[2][2]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            } else if (gameBoard.board[0][2] !== '_' && gameBoard.board[0][2] === gameBoard.board[1][1] && gameBoard.board[0][2] === gameBoard.board[2][0]) {
+                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+            }
         }
 
         return { playRound };
