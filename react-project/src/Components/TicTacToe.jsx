@@ -34,13 +34,15 @@ export default function TicTacToe() {
 
     const gameController = (function () {
         let isPlayer1 = true;
+        let isWinner = false;
 
         console.log('Welcom.');
-        gameBoard.printBoard();
 
         const playRound = () => {
             let row;
             let column;
+
+            gameBoard.printBoard();
 
             isPlayer1 ? (
                 row = prompt('player 1 row: '),
@@ -51,29 +53,75 @@ export default function TicTacToe() {
                 column = prompt('player 2 column'),
                 gameBoard.board[row][column] = 'O'
             );
-            gameBoard.printBoard();
-            checkForWinner();
-            isPlayer1 = !isPlayer1;
+            if (!checkForWinner() && !checkForTie()) {isPlayer1 = !isPlayer1}
         }
 
         const checkForWinner = () => {
+            let thisRoundHasWinner = false;
             if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[0][1] && gameBoard.board[0][0] === gameBoard.board[0][2]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[1][0] !== '_' && gameBoard.board[1][0] === gameBoard.board[1][1] && gameBoard.board[1][0] === gameBoard.board[1][2]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[2][0] !== '_' && gameBoard.board[2][0] === gameBoard.board[2][1] && gameBoard.board[2][0] === gameBoard.board[2][2]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[1][0] && gameBoard.board[0][0] === gameBoard.board[2][0]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[0][1] !== '_' && gameBoard.board[0][1] === gameBoard.board[1][1] && gameBoard.board[0][1] === gameBoard.board[2][1]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[0][2] !== '_' && gameBoard.board[0][2] === gameBoard.board[1][2] && gameBoard.board[0][2] === gameBoard.board[2][2]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[0][0] !== '_' && gameBoard.board[0][0] === gameBoard.board[1][1] && gameBoard.board[0][0] === gameBoard.board[2][2]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             } else if (gameBoard.board[0][2] !== '_' && gameBoard.board[0][2] === gameBoard.board[1][1] && gameBoard.board[0][2] === gameBoard.board[2][0]) {
-                isPlayer1 ? console.log('player 1 won (' + player1.symbol + ')') : console.log('player 2 won (' + player2.symbol + ')');
+                announceWinner();
+                thisRoundHasWinner = true;
             }
+            return thisRoundHasWinner;
+        }
+
+        const checkForTie = () => {
+            let thisRoundIsTie = false;
+            let isBoardFilled = true;
+            gameBoard.board.forEach(row => {
+                row.forEach(box => {
+                    if (box === '_') {
+                        isBoardFilled = false;
+                    }
+                })
+            });
+            if (isBoardFilled && !isWinner) {
+                thisRoundIsTie = true;
+                console.log("It's a Tie!");
+                prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame(): null;
+            }
+            return thisRoundIsTie;
+        }
+
+        const announceWinner = () => {
+            gameBoard.printBoard();
+            isPlayer1 ? 
+            console.log('player 1 won (' + player1.symbol + ')')
+            :
+            console.log('player 2 won (' + player2.symbol + ')');
+            isWinner = true;
+            prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame(): null;
+        }
+
+        const startNewGame = () => {
+            for (let rowIndex = 0; rowIndex < gameBoard.board.length; rowIndex++) {
+                for (let boxIndex = 0; boxIndex < gameBoard.board[rowIndex].length; boxIndex++) {
+                    gameBoard.board[rowIndex][boxIndex] = '_';
+                }
+            }
+            isWinner = false;
+            isPlayer1 = true;
         }
 
         return { playRound };
