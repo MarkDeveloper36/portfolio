@@ -1,12 +1,31 @@
 import './TicTacToe.css'
-
+// dit project was voornamelijk bedoelt om module design patern te leren
 export default function TicTacToe() {
-    const gameBoard = (function () {
-        let board = [
-            ['_', '_', '_'],
-            ['_', '_', '_'],
-            ['_', '_', '_']
+    const handleClick = (e) => {
+        GameBoard.DOMController.renderBoard(GameBoard.board);
+    }
+
+    const GameBoard = (function () {
+        const board = [
+            ['O', '_', 'O'],
+            ['_', 'X', '_'],
+            ['_', 'X', '_']
         ];
+
+        const DOMController = {
+            renderBoard: function (board) {
+                let index = 0;
+                for (let row = 0; row < board.length; row++) {
+                    for (let col = 0; col < board[row].length; col++) {
+                        let selector = `tictactoeBox${index + 1}`;
+                        let element = document.querySelector(`#${selector}`);
+                        element.textContent = board[row][col];
+                        index++;
+                    }
+                }
+            }
+        }
+
 
         const printBoard = () => {
             console.log('Board: ');
@@ -22,7 +41,7 @@ export default function TicTacToe() {
             console.log(printedBoard);
         }
 
-        return { printBoard, board };
+        return { printBoard, board, DOMController };
     })();
 
     function createPlayer(playerNum, symbol) {
@@ -35,8 +54,6 @@ export default function TicTacToe() {
     const gameController = (function () {
         let isPlayer1 = true;
         let isWinner = false;
-
-        console.log('Welcom.');
 
         const playRound = () => {
             let row;
@@ -53,7 +70,7 @@ export default function TicTacToe() {
                 column = prompt('player 2 column'),
                 gameBoard.board[row][column] = 'O'
             );
-            if (!checkForWinner() && !checkForTie()) {isPlayer1 = !isPlayer1}
+            if (!checkForWinner() && !checkForTie()) { isPlayer1 = !isPlayer1 }
         }
 
         const checkForWinner = () => {
@@ -99,19 +116,19 @@ export default function TicTacToe() {
             if (isBoardFilled && !isWinner) {
                 thisRoundIsTie = true;
                 console.log("It's a Tie!");
-                prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame(): null;
+                prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame() : null;
             }
             return thisRoundIsTie;
         }
 
         const announceWinner = () => {
             gameBoard.printBoard();
-            isPlayer1 ? 
-            console.log('player 1 won (' + player1.symbol + ')')
-            :
-            console.log('player 2 won (' + player2.symbol + ')');
+            isPlayer1 ?
+                console.log('player 1 won (' + player1.symbol + ')')
+                :
+                console.log('player 2 won (' + player2.symbol + ')');
             isWinner = true;
-            prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame(): null;
+            prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame() : null;
         }
 
         const startNewGame = () => {
@@ -128,8 +145,25 @@ export default function TicTacToe() {
     })();
 
     return (
-        <section id='tic-tac-to'>
-            <h1 onClick={gameController.playRound}>test</h1>
+        <section id='sectionTicTacToe'>
+            <h1 onClick={gameController.playRound}>Tic Tac Toe</h1>
+            <div id='ticTacToeContainer' className='container'>
+                <div className='row'>
+                    <div id='tictactoeBox1' className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox2' className='box bg-secondary border border-primary' onClick={handleClick}></div>
+                    <div id='tictactoeBox3' className='box bg-secondary border border-primary'></div>
+                </div>
+                <div className='row'>
+                    <div id='tictactoeBox4' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox5' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox6' className='box bg-secondary border border-primary'></div>
+                </div>
+                <div className='row'>
+                    <div id='tictactoeBox7' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox8' className='box bg-secondary border border-primary'></div>
+                    <div id='tictactoeBox9' className='box bg-secondary border border-primary'></div>
+                </div>
+            </div>
         </section>
     )
 }
