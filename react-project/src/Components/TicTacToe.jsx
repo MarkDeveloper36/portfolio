@@ -1,5 +1,9 @@
 import './TicTacToe.css'
 // dit project was voornamelijk bedoelt om module design patern te leren
+
+// To do: 
+// Clean up the interface to allow players to put in their names, include a button to start/restart the game and add a display element that shows the results upon game end!
+
 export default function TicTacToe() {
     const handleClick = (e) => {
         let elRow = e.target.getAttribute('data-row');
@@ -100,19 +104,23 @@ export default function TicTacToe() {
             if (isBoardFilled && !isWinner) {
                 thisRoundIsTie = true;
                 console.log("It's a Tie!");
-                prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame() : null;
+                setTimeout(() => {
+                    startNewGame();
+                }, 2000);
+                
             }
             return thisRoundIsTie;
         }
 
         const announceWinner = () => {
-            // gameBoard.printBoard();
             isPlayer1Turn ?
                 console.log('player 1 won (' + player1.symbol + ')')
                 :
                 console.log('player 2 won (' + player2.symbol + ')');
             isWinner = true;
-            prompt("Start new Game?\nType \"y\"") === 'y' ? startNewGame() : null;
+            setTimeout(() => {
+                startNewGame();
+            }, 2000);
         }
 
         const startNewGame = () => {
@@ -123,6 +131,7 @@ export default function TicTacToe() {
             }
             isWinner = false;
             isPlayer1Turn = true;
+            gameBoard.DOMController.renderBoard(gameBoard.board);
         }
 
         return { playRound, isPlayer1Turn };
