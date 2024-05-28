@@ -1,9 +1,18 @@
 #sectionTicTacToe {
-    background-color: red;
+    color: #fff;
+    background-image: linear-gradient(to bottom, #333333, #1a1a1a);
 
     .box {
-        background-color: aquamarine;
+        background-color: aliceblue;
+        border: 4px #1a1a1a solid;
         width: 100px;
         height: 100px;
     }
+}
+
+
+#ticTacToeContainer {
+    background-image: linear-gradient(to bottom, #414141, #262626);
+    border-radius: 1.5rem;
+    color: #1a1a1a;
 }

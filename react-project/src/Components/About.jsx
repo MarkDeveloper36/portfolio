@@ -2,7 +2,7 @@ import './About.css'
 
 export default function About() {
     return (
-        <section className='text-start container-fluid py-5'>
+        <section id='aboutSection' className='text-start container-fluid py-5'>
             <div className='row'>
                 <div className='col-1'></div>
                 <div className='col'>
