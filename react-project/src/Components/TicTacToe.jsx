@@ -25,7 +25,6 @@ export default function TicTacToe() {
                     for (let col = 0; col < board[row].length; col++) {
                         let selector = `tictactoeBox${index + 1}`;
                         let element = document.querySelector(`#${selector}`);
-                        // element.textContent = board[row][col];
                         if (board[row][col] === 'X') {
                             element.innerHTML = `
                         <svg width="233" height="176" viewBox="0 0 233 176" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,9 +136,14 @@ export default function TicTacToe() {
         }
 
         const startNewGame = () => {
+            let index = 0;
             for (let rowIndex = 0; rowIndex < gameBoard.board.length; rowIndex++) {
                 for (let boxIndex = 0; boxIndex < gameBoard.board[rowIndex].length; boxIndex++) {
                     gameBoard.board[rowIndex][boxIndex] = '';
+                    let selector = `tictactoeBox${index + 1}`;
+                    let element = document.querySelector(`#${selector}`);
+                    element.innerHTML = '';
+                    index++;
                 }
             }
             isWinner = false;
@@ -152,22 +156,28 @@ export default function TicTacToe() {
 
     return (
         <section id='sectionTicTacToe' className='py-5'>
-            <h1 onClick={gameController.playRound}>Tic Tac Toe</h1>
+            <h1 className='my-5' onClick={gameController.playRound}>Tic Tac Toe</h1>
             <div id='ticTacToeContainer' className='container p-5 justify-content-center'>
                 <div className='row justify-content-center'>
-                    <div id='tictactoeBox1' data-row="0" data-column="0" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
-                    <div id='tictactoeBox2' data-row="0" data-column="1" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
-                    <div id='tictactoeBox3' data-row="0" data-column="2" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div className='col-4'></div>
+                    <div id='tictactoeBox1' data-row="0" data-column="0" className='col box border-top-0 border-start-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div id='tictactoeBox2' data-row="0" data-column="1" className='col box border-top-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div id='tictactoeBox3' data-row="0" data-column="2" className='col box border-top-0 border-end-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div className='col-4'></div>
                 </div>
                 <div className='row justify-content-center'>
-                    <div id='tictactoeBox4' data-row="1" data-column="0" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
-                    <div id='tictactoeBox5' data-row="1" data-column="1" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
-                    <div id='tictactoeBox6' data-row="1" data-column="2" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div className='col-4'></div>
+                    <div id='tictactoeBox4' data-row="1" data-column="0" className='col box border-start-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div id='tictactoeBox5' data-row="1" data-column="1" className='col box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div id='tictactoeBox6' data-row="1" data-column="2" className='col box border-end-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div className='col-4'></div>
                 </div>
                 <div className='row justify-content-center'>
-                    <div id='tictactoeBox7' data-row="2" data-column="0" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
-                    <div id='tictactoeBox8' data-row="2" data-column="1" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
-                    <div id='tictactoeBox9' data-row="2" data-column="2" className='box d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div className='col-4'></div>
+                    <div id='tictactoeBox7' data-row="2" data-column="0" className='col box border-start-0 border-bottom-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div id='tictactoeBox8' data-row="2" data-column="1" className='col box border-bottom-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div id='tictactoeBox9' data-row="2" data-column="2" className='col box border-bottom-0 border-end-0 d-flex justify-content-center align-items-center' onClick={handleClick}></div>
+                    <div className='col-4'></div>
                 </div>
             </div>
         </section>
